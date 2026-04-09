@@ -10,4 +10,11 @@ function getComputerChoice(){
     return computerChoice;
 };
 
+function getHumanChoice(){
+    //Prompt the user for his choice and return that choice.
+    let userChoice = prompt("Your turn to play: enter 'rock', 'paper', or 'scissors':", "paper");
+    return userChoice;
+};
+
 console.log(getComputerChoice());
+console.log(getHumanChoice());
