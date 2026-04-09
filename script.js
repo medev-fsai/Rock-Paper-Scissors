@@ -1,3 +1,5 @@
+let humanScore = 0;
+let computerScore = 0;
 
 function getComputerChoice(){
     //randomly returns "rock", "paper", "scissors"
@@ -16,5 +18,61 @@ function getHumanChoice(){
     return userChoice;
 };
 
-console.log(getComputerChoice());
-console.log(getHumanChoice());
+function playRound(computerChoice, humanChoice){
+    //Play one round of the game. Requires computer choice and human choice.
+    //STEP 1: Get players choices and process them: valid value "rock", "paper", "scissors".
+    computerChoice = computerChoice.toLowerCase();
+    humanChoice = humanChoice.toLowerCase();
+
+    //STEP 2: Implement game logic
+    if(computerChoice === "rock"){
+        switch (humanChoice){
+            case "paper":
+                humanScore++;
+                console.log(`You win: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                break;
+            case "scissors":
+                computerScore++;
+                console.log(`You loose: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                break;
+            case "rock":
+                console.log(`You choose what the computer did!\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                break;
+        }
+    }else if(computerChoice === "paper"){
+        switch (humanChoice){
+            case "scissors":
+                humanScore++;
+                console.log(`You win: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                break;
+            case "rock":
+                computerScore++;
+                console.log(`You loose: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                break;
+            case "paper":
+                console.log(`You choose what the computer did!\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                break;
+        }
+    }else{
+        switch (humanChoice){
+            case "rock":
+                humanScore++;
+                console.log(`You win: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                break;
+            case "paper":
+                computerScore++;
+                console.log(`You loose: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                break;
+            case "scissors":
+                console.log(`You choose what the computer did!\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                break;
+        }
+    }
+    return;
+};
+
+//console.log(getComputerChoice());
+//console.log(getHumanChoice());
+let humanChoice = getHumanChoice();
+let computerChoice = getComputerChoice();
+playRound(computerChoice, humanChoice);
