@@ -1,5 +1,4 @@
-let humanScore = 0;
-let computerScore = 0;
+
 
 function getComputerChoice(){
     //randomly returns "rock", "paper", "scissors"
@@ -24,55 +23,62 @@ function playRound(computerChoice, humanChoice){
     computerChoice = computerChoice.toLowerCase();
     humanChoice = humanChoice.toLowerCase();
 
+    //When called from playGame, playRound cannot access human/computerScores. 
+    //Define new score related to round
+    //Modify function playRound to return the round winner.
+    let humanRoundScore = 0, computerRoundScore = 0;
+
     //STEP 2: Implement game logic
     if(computerChoice === "rock"){
         switch (humanChoice){
             case "paper":
-                humanScore++;
-                console.log(`You win: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                humanRoundScore++;
+                console.log(`You win: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerRoundScore}:${humanRoundScore} You`);
                 break;
             case "scissors":
-                computerScore++;
-                console.log(`You loose: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                computerRoundScore++;
+                console.log(`You loose: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerRoundScore}:${humanRoundScore} You`);
                 break;
             case "rock":
-                console.log(`You choose what the computer did!\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                console.log(`You choose what the computer did!\nSCORE: Computer ${computerRoundScore}:${humanRoundScore} You`);
                 break;
         }
     }else if(computerChoice === "paper"){
         switch (humanChoice){
             case "scissors":
-                humanScore++;
-                console.log(`You win: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                humanRoundScore++;
+                console.log(`You win: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerRoundScore}:${humanRoundScore} You`);
                 break;
             case "rock":
-                computerScore++;
-                console.log(`You loose: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                computerRoundScore++;
+                console.log(`You loose: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerRoundScore}:${humanRoundScore} You`);
                 break;
             case "paper":
-                console.log(`You choose what the computer did!\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                console.log(`You choose what the computer did!\nSCORE: Computer ${computerRoundScore}:${humanRoundScore} You`);
                 break;
         }
     }else{
         switch (humanChoice){
             case "rock":
-                humanScore++;
-                console.log(`You win: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                humanRoundScore++;
+                console.log(`You win: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerRoundScore}:${humanRoundScore} You`);
                 break;
             case "paper":
-                computerScore++;
-                console.log(`You loose: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                computerRoundScore++;
+                console.log(`You loose: computer choice ${computerChoice} vs yours ${humanChoice}.\nSCORE: Computer ${computerRoundScore}:${humanRoundScore} You`);
                 break;
             case "scissors":
-                console.log(`You choose what the computer did!\nSCORE: Computer ${computerScore}:${humanScore} You`);
+                console.log(`You choose what the computer did!\nSCORE: Computer ${computerRoundScore}:${humanRoundScore} You`);
                 break;
         }
     }
-    return;
+    return (computerRoundScore > humanRoundScore) ? "computer" : 
+           (computerRoundScore == humanRoundScore) ? "both" : "human";
 };
 
 //console.log(getComputerChoice());
 //console.log(getHumanChoice());
 let humanChoice = getHumanChoice();
 let computerChoice = getComputerChoice();
-playRound(computerChoice, humanChoice);
+let winner = playRound(computerChoice, humanChoice);
+console.log(winner);
