@@ -80,38 +80,3 @@ function playRound(computerChoice, humanChoice){
 };
 
 
-function playGame(numRounds=5){
-    //Play an entire game of numRounds rounds.
-    let round = 1;
-    let humanScore = 0, computerScore = 0;
-    while(round <= numRounds){
-        console.log(`********************* ROUND ${round} ********************** `);
-        let computerChoice = getComputerChoice();
-        let humanChoice = getHumanChoice();
-        //get winner from round
-        let winner = playRound(computerChoice, humanChoice);
-        //update scores
-        switch (winner){
-            case "computer":
-                computerScore++;
-                break;
-            case "human":
-                humanScore++;
-                break;
-            case "both":
-                console.log("No winner this round !");
-                break;
-        }
-        round++;
-    }
-    let gameWinner = (computerScore > humanScore) ? "computer" :
-                     (computerScore == humanScore) ? "No winner": "human";
-    console.log("***************** FINAL RESULTS ************************");
-    console.log(`FINAL SCORES: Computer ${computerScore}:${humanScore} You.`);
-    console.log(`Final winner: ${gameWinner}`);
-    return;
-};
-
-
-console.log("Prepare yourself, we are starting!");
-playGame();
