@@ -8,11 +8,34 @@
         body {
             background-color: #04041f;
             color: #ccd6de;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 60px;
+        }
+        #intro {
+            margin-bottom: 40px;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-evenly;
         }
     </style>
     <script type="module" src="script.js"></script>
 </head>
 <body>
     <h1>Implementation of Rock-Paper-Scissors game</h1>
+
+    <p id="intro">Make your choice:</p>
+    <div class="container">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
+    <div class="score">
+
+    </div>
 </body>
 </html>
