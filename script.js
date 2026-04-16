@@ -79,16 +79,20 @@ function playRound(computerChoice, humanChoice){
            (computerRoundScore == humanRoundScore) ? "both" : "human";
 };
 
-let computerScore = 0, humanScore = 0;
-let round = 1;
+let computerScore = null;
+let humanScore = null;
+let round = null;
 
 const scoreDisplay = document.querySelector(".score");
 const winner = document.querySelector(".winner");
+const roundDisplay = document.querySelector("#round-display");
+initGame();
 //scoreDisplay.addEventListener("roundFinished", showRoundScore);
 
 let buttonsList = document.querySelectorAll("button");
 buttonsList.forEach((item) => {
-    item.addEventListener("click", () => {
+    if(item.id !== "replay"){
+        item.addEventListener("click", () => {
         
         const humanChoice = item.id;
         const computerChoice = getComputerChoice();
@@ -102,29 +106,38 @@ buttonsList.forEach((item) => {
                 humanScore++;
                 break;
             case "both":
+                computerScore++;
+                humanScore++;
                 break;
         }
-        showRoundScore(scoreDisplay);
+        showRoundScore();
+        updateRoundDisplay();
         const maxScore = getMaxScore(computerScore, humanScore);
         if (maxScore === 5){
-            displayWinner(winner);
-            initGame();
+            displayWinner();
+            allowReplay();
         }
          
-    });
+        });
+    }else {
+        item.addEventListener("click", ()=>{
+            initGame();
+        });
+    }
+    
 });
 
 function getMaxScore(firstScore, secondScore){
     return firstScore > secondScore ? firstScore : secondScore;
 }
 
-function showRoundScore(item){
-    item.textContent = `SCORE: Computer ${computerScore} : ${humanScore} You`;
+function showRoundScore(){
+    scoreDisplay.textContent = `SCORE: Computer ${computerScore} : ${humanScore} You`;
     return;
 }   
-function displayWinner(item){
+function displayWinner(){
     let gameWinner = computerScore > humanScore ? "computer" : "you";
-    item.textContent = `Game winner: ${gameWinner}`;
+    winner.textContent = `Game winner: ${gameWinner}`;
     return;
 };
 
@@ -132,6 +145,19 @@ function initGame() {
     computerScore = 0;
     humanScore = 0;
     round = 1;
+    roundDisplay.textContent = `Round ${round}`;
+    scoreDisplay.textContent = `SCORE: Computer ${computerScore} : ${humanScore} You`;
+    winner.textContent = "";
+    document.querySelector("#replay").style.display = "none";
 }
 
+function updateRoundDisplay(){
+    round++;
+    roundDisplay.textContent = `Round ${round}`;
+}
+
+function allowReplay(){
+    document.querySelector("#replay").style.display = "inline";
+    return;
+}
 

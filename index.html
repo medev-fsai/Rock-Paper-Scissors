@@ -13,6 +13,9 @@
         h1 {
             margin-bottom: 60px;
         }
+        h3 {
+            margin-bottom: 40px;
+        }
         #intro {
             margin-bottom: 40px;
         }
@@ -32,12 +35,15 @@
             font-size: xx-large;
             font-weight: 900;
         }
+        #replay {
+            display: none;
+        }
     </style>
     <script type="module" src="script.js" defer></script>
 </head>
 <body>
     <h1>Implementation of Rock-Paper-Scissors game</h1>
-
+    <h3 id="round-display"></h3>
     <p id="intro">Make your choice:</p>
     <div class="container">
         <button id="rock">Rock</button>
@@ -49,7 +55,8 @@
     </div>
 
     <div class="winner">
-        winner
+        
     </div>
+    <button id="replay">Play again</button>
 </body>
 </html>
