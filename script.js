@@ -116,6 +116,7 @@ buttonsList.forEach((item) => {
         if (maxScore === 5){
             displayWinner();
             allowReplay();
+            
         }
          
         });
